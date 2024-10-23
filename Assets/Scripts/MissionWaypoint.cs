@@ -14,6 +14,8 @@ public class MissionWaypoint : MonoBehaviour
     // To adjust the position of the icon
     public Vector3 offset;
 
+    public Camera mainCamera;
+
     private void Update()
     {
         // Giving limits to the icon so it sticks on the screen
@@ -29,7 +31,7 @@ public class MissionWaypoint : MonoBehaviour
         float maxY = Screen.height - minY;
 
         // Temporary variable to store the converted position from 3D world point to 2D screen point
-        Vector2 pos = Camera.main.WorldToScreenPoint(target.position + offset);
+        Vector2 pos = mainCamera.WorldToScreenPoint(target.position + offset);
 
         // Check if the target is behind us, to only show the icon once the target is in front
         if (Vector3.Dot((target.position - transform.position), transform.forward) < 0)
