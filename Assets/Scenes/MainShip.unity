@@ -170,6 +170,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 4b5e7fcd9beea854eadd29914798b799, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: -7511558181221131132, guid: 4b5e7fcd9beea854eadd29914798b799, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: -3963241562183589234, guid: bd31670f00b12824e977e1488263536b, type: 3}
+    - target: {fileID: -7511558181221131132, guid: 4b5e7fcd9beea854eadd29914798b799, type: 3}
+      propertyPath: m_Materials.Array.data[4]
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: 4b5e7fcd9beea854eadd29914798b799, type: 3}
+    - target: {fileID: -7511558181221131132, guid: 4b5e7fcd9beea854eadd29914798b799, type: 3}
+      propertyPath: m_Materials.Array.data[6]
+      value: 
+      objectReference: {fileID: -6867524174320841699, guid: a13c9dffb017a8e489cb09b14c7ced7b, type: 3}
+    - target: {fileID: -7511558181221131132, guid: 4b5e7fcd9beea854eadd29914798b799, type: 3}
+      propertyPath: m_Materials.Array.data[7]
+      value: 
+      objectReference: {fileID: 2100000, guid: 23884aea9e628ee45a87314c9fd2483e, type: 2}
     - target: {fileID: 919132149155446097, guid: 4b5e7fcd9beea854eadd29914798b799, type: 3}
       propertyPath: m_Name
       value: SpaceshipCargo
@@ -1464,6 +1484,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6004949192717032565, guid: 8c9adb99a6f973349bc212c796e719dc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8ea6ed53aae46fe4e83d154e73aed27e, type: 2}
     - target: {fileID: 919132149155446097, guid: 8c9adb99a6f973349bc212c796e719dc, type: 3}
       propertyPath: m_Name
       value: SpaceshipLanded
