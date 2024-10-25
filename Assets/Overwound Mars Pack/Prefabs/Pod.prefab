@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6474621702801257183}
   - component: {fileID: 4464950146476685094}
   - component: {fileID: 8544271857119415291}
+  - component: {fileID: 574494145405110206}
   m_Layer: 0
   m_Name: Pod
   m_TagString: Player
@@ -40,6 +41,7 @@ Transform:
   - {fileID: 2148545925679611244}
   - {fileID: 8750885858761360005}
   - {fileID: 8305012185532301195}
+  - {fileID: 8330465227825094966}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33339595526482924
@@ -123,6 +125,12 @@ PlayableDirector:
     value: {fileID: 8305012185523261541}
   - key: {fileID: 1083450290068159654, guid: 0e2a360ba4bd6fd4fa177a391375ba57, type: 2}
     value: {fileID: 8544271857119415291}
+  - key: {fileID: 3099979821252117832, guid: 0e2a360ba4bd6fd4fa177a391375ba57, type: 2}
+    value: {fileID: 252914839759135973}
+  - key: {fileID: -8897083420127033857, guid: 0e2a360ba4bd6fd4fa177a391375ba57, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7457160619809931760, guid: 0e2a360ba4bd6fd4fa177a391375ba57, type: 2}
+    value: {fileID: 5117182025250409062}
   m_ExposedReferences:
     m_References: []
 --- !u!95 &8401013152485760301
@@ -164,7 +172,7 @@ MonoBehaviour:
   Name: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
   mainCamera: {fileID: 6650302283213072977}
-  objectName: POD
+  objectName: Landing Pod
 --- !u!65 &4464950146476685094
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -282,6 +290,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!54 &574494145405110206
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617857761460912}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 14
+  m_CollisionDetection: 0
 --- !u!1 &252914839759135973
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,7 +1076,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 71c3720f0c4dbbe49a954afe700a3193, type: 3}
 --- !u!4 &2148545925679611244 stripped
@@ -1734,3 +1769,94 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1001 &8330465227825232822
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4008215048926364}
+    m_Modifications:
+    - target: {fileID: 100000, guid: 70b2b1dead3bbd444b6a66b860ea5ee3, type: 3}
+      propertyPath: m_Name
+      value: PodLegs
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 70b2b1dead3bbd444b6a66b860ea5ee3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 70b2b1dead3bbd444b6a66b860ea5ee3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 70b2b1dead3bbd444b6a66b860ea5ee3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 70b2b1dead3bbd444b6a66b860ea5ee3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 70b2b1dead3bbd444b6a66b860ea5ee3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 70b2b1dead3bbd444b6a66b860ea5ee3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 70b2b1dead3bbd444b6a66b860ea5ee3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 70b2b1dead3bbd444b6a66b860ea5ee3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 70b2b1dead3bbd444b6a66b860ea5ee3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 70b2b1dead3bbd444b6a66b860ea5ee3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: 70b2b1dead3bbd444b6a66b860ea5ee3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5117182025250409062}
+  m_SourcePrefab: {fileID: 100100000, guid: 70b2b1dead3bbd444b6a66b860ea5ee3, type: 3}
+--- !u!4 &8330465227825094966 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 70b2b1dead3bbd444b6a66b860ea5ee3, type: 3}
+  m_PrefabInstance: {fileID: 8330465227825232822}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8330465227825331478 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 70b2b1dead3bbd444b6a66b860ea5ee3, type: 3}
+  m_PrefabInstance: {fileID: 8330465227825232822}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5117182025250409062
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8330465227825331478}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
