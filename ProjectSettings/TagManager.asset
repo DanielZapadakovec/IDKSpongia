@@ -8,10 +8,7 @@ TagManager:
   - Enemy
   - FxTemporaire
   - Selectable
-  - Target
-  - Energy
-  - Ladder
-  - Laser
+  - Ground
   layers:
   - Default
   - TransparentFX

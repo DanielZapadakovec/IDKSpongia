@@ -13,23 +13,27 @@ public class GravityAttractor : MonoBehaviour
         Rigidbody rb = body.GetComponent<Rigidbody>();
         if (rb == null) return;
 
-        // VypoËÌtaj vektor gravit·cie (normovan˝ smer k stredu gravit·tora)
-        Vector3 gravityUp = (body.position - transform.position).normalized;
-
-        // Vzdialenosù medzi telom a gravit·torom
+        // VypoËÌtaj vzdialenosù medzi telom a gravit·torom
         float distance = Vector3.Distance(body.position, transform.position);
 
         // Dynamick· gravit·cia, ktor· sa zmenöuje so vzdialenosùou
         float dynamicGravity = Mathf.Lerp(0, gravity, 1 - (distance / maxGravityDistance));
 
-        // Aplikuj silu gravit·cie
-        rb.AddForce(gravityUp * dynamicGravity);
+        // ZÌskaj norm·lu terÈnu na pozÌcii objektu
+        RaycastHit hit;
+        if (Physics.Raycast(body.position, -body.up, out hit))
+        {
+            // Norm·la terÈnu
+            Vector3 groundNormal = hit.normal;
 
-        // ZabezpeËiù hladk˙ rot·ciu objektu smerom k stredu gravit·cie
-        Vector3 bodyUp = body.up;
-        Quaternion targetRotation = Quaternion.FromToRotation(bodyUp, gravityUp) * body.rotation;
+            // Aplikuj silu gravit·cie v smere norm·ly terÈnu
+            rb.AddForce(groundNormal * dynamicGravity);
 
-        // Pouûi jemnejöie prispÙsobenie rot·cie
-        body.rotation = Quaternion.Slerp(body.rotation, targetRotation, rotationSmoothness * Time.deltaTime);
+            // ZabezpeËiù hladk˙ rot·ciu objektu smerom k norm·le terÈnu
+            Quaternion targetRotation = Quaternion.FromToRotation(body.up, groundNormal) * body.rotation;
+
+            // Pouûi jemnejöie prispÙsobenie rot·cie
+            body.rotation = Quaternion.Slerp(body.rotation, targetRotation, rotationSmoothness * Time.deltaTime);
+        }
     }
 }
