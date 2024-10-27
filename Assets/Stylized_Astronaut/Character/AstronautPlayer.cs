@@ -80,6 +80,7 @@ namespace AstronautPlayer
 
         private void Jump()
         {
+            anim.SetBool("isGrounded", false);
             rigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
 
@@ -91,6 +92,7 @@ namespace AstronautPlayer
         {
             if (collision.gameObject.CompareTag("Ground"))
             {
+                anim.SetBool("isGrounded", true);
                 isGrounded = true;
             }
         }
