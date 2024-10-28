@@ -5,91 +5,68 @@ namespace AstronautPlayer
     public class AstronautPlayer : MonoBehaviour
     {
         private Animator anim;
-
-        [SerializeField]
-        private float moveSpeed = 15f;
-        [SerializeField]
-        private float jumpForce = 10f;
-        [SerializeField]
-        private float turnSpeed = 400.0f;
-        private float gravityPauseDuration = 1f;
-
-        [SerializeField]
-        private Transform cameraTransform;
+        public float moveSpeed = 15;
+        public float jumpForce = 10f; // Sila skoku
+        public float turnSpeed = 400.0f;
+        public float gravity = 20.0f;
+        public float gravityPauseDuration = 0.5f; // Dåžka pauzy gravitácie po skoku
 
         private Vector3 moveDir;
-        private bool isGrounded = true;
-        private Rigidbody rigidbody;
-        private GravityBody gravityBody;
+        private bool isGrounded = true; // Kontrola, èi je hráè na zemi
+        public Rigidbody rigidbody;
+        public GravityBody gravityBody; // Referencia na GravityBody komponent
 
-        private void Start()
+        void Start()
         {
-            anim = GetComponentInChildren<Animator>();
-            rigidbody = GetComponent<Rigidbody>();
-            gravityBody = GetComponent<GravityBody>();
+            anim = gameObject.GetComponentInChildren<Animator>();
         }
 
-        private void Update()
+        void Update()
         {
-            HandleMovementInput();
-            HandleJumpInput();
-        }
-
-        private void HandleMovementInput()
-        {
-            float horizontalInput = Input.GetAxis("Horizontal");
-            float verticalInput = Input.GetAxis("Vertical");
-
-            // Rotácia pohybu pod¾a kamery
-            moveDir = new Vector3(horizontalInput, 0, verticalInput);
-            moveDir = cameraTransform.TransformDirection(moveDir);
-            moveDir.y = 0; // Potlaèenie vertikálnej zložky, aby sme neovplyvnili gravitáciu
-            moveDir.Normalize();
-
-            // Nastavenie animácie pod¾a pohybu
-            if (moveDir.magnitude > 0)
+            // Kontrola, èi hráè stlaèil kláves pre pohyb
+            if (Input.GetKey("w"))
             {
                 anim.SetInteger("AnimationPar", 1);
-                RotateTowardsMovementDirection();
             }
             else
             {
                 anim.SetInteger("AnimationPar", 0);
             }
-        }
 
-        private void HandleJumpInput()
-        {
+            // Kontrola, èi hráè stlaèil kláves pre skok a èi je na zemi
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
             {
                 Jump();
             }
-        }
 
-        private void RotateTowardsMovementDirection()
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(moveDir);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+            // Pohyb do strán
+            moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+
+            // Otoèenie
+            float turn = Input.GetAxis("Horizontal");
+            transform.Rotate(0, turn * turnSpeed * Time.deltaTime, 0);
         }
 
         private void FixedUpdate()
         {
-            // Pohyb hráèa pomocou Rigidbody
-            rigidbody.MovePosition(rigidbody.position + moveDir * moveSpeed * Time.deltaTime);
+            // Pohyb hráèa
+            rigidbody.MovePosition(rigidbody.position + transform.TransformDirection(moveDir) * moveSpeed * Time.deltaTime);
         }
 
         private void Jump()
         {
-            anim.SetBool("isGrounded", false);
+            // Aplikovanie vertikálnej sily pre skok
             rigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
+            isGrounded = false; // Nastavíme, že hráè je vo vzduchu
+            anim.SetBool("isGrounded", false);
 
-            // Pozastavenie gravitácie na istý èas
+            // Pozastavenie gravitácie pri skoku
             gravityBody.DisableGravity(gravityPauseDuration);
         }
 
         private void OnCollisionEnter(Collision collision)
         {
+            // Ak hráè koliduje so zemou, nastavíme, že je na zemi
             if (collision.gameObject.CompareTag("Ground"))
             {
                 anim.SetBool("isGrounded", true);

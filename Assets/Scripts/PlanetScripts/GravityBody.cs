@@ -4,22 +4,20 @@ using UnityEngine;
 public class GravityBody : MonoBehaviour
 {
     public GravityAttractor attractor;
-    private Transform myTransform;
-    private bool gravityEnabled = true; // Flag pre zapnutie/vypnutie gravitácie
+    private bool gravityEnabled = true; // Povolenie gravitácie
 
-    void Start()
+    private void Start()
     {
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         rb.useGravity = false;
-        myTransform = transform;
     }
 
-    void Update()
+    private void FixedUpdate()
     {
-        if (gravityEnabled)
+        if (gravityEnabled && attractor != null)
         {
-            attractor.Attract(myTransform); // Atrakcia len ak je gravitácia povolená
+            attractor.Attract(transform); // Atrakcia len ak je gravitácia povolená
         }
     }
 
@@ -30,8 +28,8 @@ public class GravityBody : MonoBehaviour
 
     private IEnumerator DisableGravityTemporarily(float duration)
     {
-        gravityEnabled = false; // Vypni gravitáciu
-        yield return new WaitForSeconds(duration); // Poèkaj definovaný èas
-        gravityEnabled = true; // Znova zapni gravitáciu
+        gravityEnabled = false;  // Doèasne vypni gravitáciu
+        yield return new WaitForSeconds(duration);
+        gravityEnabled = true;   // Obnov gravitáciu
     }
 }
