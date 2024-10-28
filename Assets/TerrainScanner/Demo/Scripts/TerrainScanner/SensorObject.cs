@@ -40,7 +40,6 @@ namespace TerrainScannerDEMO
                     _detected = false;
                     _timerToReset = 0f;
                     _meshRenderer.sharedMaterial = _cachedMaterial;
-                    _audioTrigger.PlayOneShot(_sensorExit);
                 }
 
                 _timerToReset += Time.deltaTime;
@@ -62,8 +61,8 @@ namespace TerrainScannerDEMO
         private void Detected()
         { 
             _detected = true;
-            _timeToReset = 2 * _detector.Duration;
-            _audioTrigger.Play();
+            _audioTrigger.PlayOneShot(_sensorExit);
+            missionWaypoint.enabled = true;
             _meshRenderer.sharedMaterial = _detectedMaterial;
         }
     }

@@ -3,7 +3,22 @@ guid: 23fd2a94dfad70e44afab145ea133a34
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DarkMetal
+    second: {fileID: -1391134871863005975, guid: 23c373cd7e06e424cb287a9fe687f4cb, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GreenGlow
+    second: {fileID: -7979996460417118653, guid: d4d8fc654d28732429dd44dc442e9812, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: -8896051167825165466, guid: 1fd026d32bfd8844b872872c50383c8e, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

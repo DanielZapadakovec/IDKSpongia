@@ -24,7 +24,7 @@ namespace AstronautPlayer
         void Update()
         {
             // Kontrola, èi hráè stlaèil kláves pre pohyb
-            if (Input.GetKey("w"))
+            if (Input.GetKey("w") || Input.GetKey("s"))
             {
                 anim.SetInteger("AnimationPar", 1);
             }

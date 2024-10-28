@@ -69,6 +69,7 @@ namespace TerrainScannerDEMO
 
         void Update()
         {
+
             if (_startSensor)
             {
                 _currentRadius = Mathf.Min(_speed * _timer, _maxDistance);
@@ -99,6 +100,11 @@ namespace TerrainScannerDEMO
                 _sensorMaterial.SetFloat("_OverlayEmission", Mathf.Lerp(_EmissionCacher, 0, _timerKill / _killTime));
 
                 _timerKill += Time.deltaTime;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Tab)) 
+            {
+                Scan();
             }
 
         }

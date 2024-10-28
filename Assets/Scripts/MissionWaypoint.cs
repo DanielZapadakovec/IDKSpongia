@@ -1,50 +1,96 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MissionWaypoint : MonoBehaviour
 {
-    // Indicator icon
-    public Image img;
-    // The target (location, enemy, etc..)
-    public Transform target;
-    // UI Text to display the distance
-    public Text meter;
-    public Text Name;
-    public Vector3 offset;
+    public GameObject waypointPrefab; // Prefab waypointu (ikona, text)
+    public Canvas canvas; // Canvas, kde sa waypoint zobrazí
+    public Transform playerTransform; // Referencia na hráèa
+    public Vector3 offset; // Offset waypointu
     public Camera mainCamera;
     [Header("Properties")]
     public string objectName;
 
+    private GameObject currentWaypointInstance;
+    private Image img;
+    private Text meter;
+    private Text nameText;
+
+    private bool isSpawned;
+    private float fadeDuration = 1.5f; // Dåžka fade-out efektu v sekundách
+
     private void Update()
+    {
+        // Inštanciovanie waypointu, ak ešte neexistuje
+        if (!isSpawned)
+        {
+            currentWaypointInstance = Instantiate(waypointPrefab, canvas.transform);
+            img = currentWaypointInstance.GetComponentInChildren<Image>();
+            meter = currentWaypointInstance.transform.Find("Meter").GetComponent<Text>();
+            nameText = currentWaypointInstance.transform.Find("Name").GetComponent<Text>();
+            nameText.text = objectName;
+            isSpawned = true;
+            StartCoroutine(FadeOutAndDestroyAfterDelay(11f)); // Odstránenie po 7 sekundách s fade-out efektom
+        }
+
+        if (currentWaypointInstance)
+        {
+            UpdateWaypointPositionAndDistance();
+        }
+    }
+
+    private void UpdateWaypointPositionAndDistance()
     {
         float minX = img.GetPixelAdjustedRect().width / 2;
         float maxX = Screen.width - minX;
-
         float minY = img.GetPixelAdjustedRect().height / 2;
         float maxY = Screen.height - minY;
 
-        Vector2 pos = mainCamera.WorldToScreenPoint(target.position + offset);
+        Vector2 pos = mainCamera.WorldToScreenPoint(transform.position + offset);
 
-        if (Vector3.Dot((target.position - transform.position), transform.forward) < 0)
+        if (Vector3.Dot((transform.position - playerTransform.position), mainCamera.transform.forward) < 0)
         {
-            if (pos.x < Screen.width / 2)
-            {
-                pos.x = maxX;
-            }
-            else
-            {
-                pos.x = minX;
-            }
+            pos.x = pos.x < Screen.width / 2 ? maxX : minX;
         }
-
 
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
 
         img.transform.position = pos;
-        meter.text = ((int)Vector3.Distance(target.position, transform.position)).ToString() + "m";
-        Name.text = objectName;
+
+        float distance = Vector3.Distance(transform.position, playerTransform.position);
+        meter.text = $"{Mathf.RoundToInt(distance)} m";
+    }
+
+    private IEnumerator FadeOutAndDestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay - fadeDuration); // Èas, kedy zaène fade-out
+
+        // Fade-out efekt
+        float elapsedTime = 0;
+        Color initialColor = img.color;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(1, 0, elapsedTime / fadeDuration);
+
+            // Nastavenie alfa pre obrázok a text
+            SetAlphaForWaypoint(alpha);
+            yield return null;
+        }
+
+        Destroy(currentWaypointInstance);
+        isSpawned = false;
+        this.enabled = false;
+    }
+
+    // Metóda na nastavenie alfa pre všetky komponenty waypointu
+    private void SetAlphaForWaypoint(float alpha)
+    {
+        img.color = new Color(img.color.r, img.color.g, img.color.b, alpha);
+        meter.color = new Color(meter.color.r, meter.color.g, meter.color.b, alpha);
+        nameText.color = new Color(nameText.color.r, nameText.color.g, nameText.color.b, alpha);
     }
 }

@@ -3,7 +3,32 @@ guid: 5a8f18fdb248dee43bbcf839d53e7a7c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black
+    second: {fileID: -1580535799172915004, guid: ff320846a04026c4ab6f73eb66fd8564, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BlueBlow
+    second: {fileID: 6407803186200373954, guid: e651aaf7a878b644f89f9603ad6a4502, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DarkMetal
+    second: {fileID: -1391134871863005975, guid: 7df1ca9027af5ac42bc4c45ce8b15775, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 8556262120643298411, guid: 612e1c0f9df5351459685a9d0ca0e51d, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GreenGlow
+    second: {fileID: -7979996460417118653, guid: d4d8fc654d28732429dd44dc442e9812, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
