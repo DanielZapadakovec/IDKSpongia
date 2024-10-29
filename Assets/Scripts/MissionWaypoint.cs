@@ -11,6 +11,7 @@ public class MissionWaypoint : MonoBehaviour
     public Camera mainCamera;
     [Header("Properties")]
     public string objectName;
+    public bool isTimed;
 
     private GameObject currentWaypointInstance;
     private Image img;
@@ -31,7 +32,11 @@ public class MissionWaypoint : MonoBehaviour
             nameText = currentWaypointInstance.transform.Find("Name").GetComponent<Text>();
             nameText.text = objectName;
             isSpawned = true;
-            StartCoroutine(FadeOutAndDestroyAfterDelay(11f)); // Odstránenie po 7 sekundách s fade-out efektom
+            if (isTimed)
+            {
+                StartCoroutine(FadeOutAndDestroyAfterDelay(11f));
+            }
+            else { return; }
         }
 
         if (currentWaypointInstance)
@@ -76,7 +81,6 @@ public class MissionWaypoint : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float alpha = Mathf.Lerp(1, 0, elapsedTime / fadeDuration);
 
-            // Nastavenie alfa pre obrázok a text
             SetAlphaForWaypoint(alpha);
             yield return null;
         }
