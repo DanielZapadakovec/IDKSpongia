@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/OutdatedSpaceStation.unity
     guid: 3340b5277838d4043bdf7fcd82243dac
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MainShip.unity
     guid: 2fa1e1666886d474a993d3581ed2fac4
   - enabled: 0
@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/End.unity
     guid: 902dcece219f54945bee95f6aeea1a69
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FirstPlanet.unity
     guid: 78b76c0bbe10d0e44a56ff48efe376bb
   m_configObjects: {}
