@@ -10,6 +10,7 @@ TagManager:
   - Selectable
   - Ground
   - Energy
+  - Interactable
   layers:
   - Default
   - TransparentFX
