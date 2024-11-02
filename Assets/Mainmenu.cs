@@ -25,7 +25,7 @@ public class Mainmenu : MonoBehaviour
     }
     public void StartgameButton()
     {
-        SceneManager.LoadScene("MainShip");
+        SceneManager.LoadScene("StartingScene");
     }
     public void ExitButton()
     {
