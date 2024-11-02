@@ -15,6 +15,8 @@ public class Terminal : MonoBehaviour
 
     private AudioSource audioSource;    // Zdroj zvuku
     private bool isTyping;              // Kontrola, èi sa aktuálne nieèo vypisuje
+    public ObjectiveManager objectiveManager;
+    bool hasCompletedObjective;
 
     private void Start()
     {
@@ -127,6 +129,11 @@ public class Terminal : MonoBehaviour
 
     void End()
     {
+        if(!hasCompletedObjective)
+        {
+            objectiveManager.CompleteObjective();
+            hasCompletedObjective = true;
+        }
         outputText.text = "";
         if (generatorChecked)
         {
@@ -139,5 +146,6 @@ public class Terminal : MonoBehaviour
         {
             StartCoroutine(TypeText("Error: Check generator, then end terminal.\n"));
         }
+        
     }
 }
