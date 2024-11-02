@@ -34,9 +34,9 @@ public class Terminal : MonoBehaviour
     IEnumerator BootSequence()
     {
         outputText.text = "";
-        yield return TypeText("Initializing Terminal...");
+        yield return TypeText("Initializing Terminal......");
         yield return new WaitForSeconds(0.5f);
-        yield return TypeText("Loading system files...");
+        yield return TypeText("Loading system files......");
         yield return new WaitForSeconds(0.5f);
         yield return TypeText("Welcome to the terminal! Type /help for commands.\n");
     }
