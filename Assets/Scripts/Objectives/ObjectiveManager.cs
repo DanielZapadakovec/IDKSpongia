@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,10 +8,14 @@ public class ObjectiveManager : MonoBehaviour
     public Text objectiveText; // Textové pole UI, kde sa zobrazí aktuálny cie¾
     private int currentObjectiveIndex = 0;
 
+    public bool waypointNeeded;
+
     [System.Serializable]
     public class Objective
     {
         public string description; // Popis cie¾a
+        
+        public MissionWaypoint waypoint;
     }
 
     public List<Objective> objectives = new List<Objective>(); // Zoznam cie¾ov
@@ -31,6 +36,11 @@ public class ObjectiveManager : MonoBehaviour
     {
         if (currentObjectiveIndex < objectives.Count - 1)
         {
+            if (waypointNeeded) {
+                objectives[currentObjectiveIndex+1].waypoint.enabled = true;
+                objectives[currentObjectiveIndex].waypoint.DestroyWaypoint(); 
+
+            }
             currentObjectiveIndex++;
             UpdateObjectiveText();
         }

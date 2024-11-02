@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AudioTurn : MonoBehaviour
 {
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     public GameObject audioParticle;
 
     void Start()
