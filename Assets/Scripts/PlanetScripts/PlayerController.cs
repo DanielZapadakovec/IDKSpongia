@@ -27,8 +27,6 @@ public class PlayerController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
         // Inicializácia AudioSource
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = footstepSound;

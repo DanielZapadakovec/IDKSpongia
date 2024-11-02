@@ -68,7 +68,7 @@ public class MissionWaypoint : MonoBehaviour
         meter.text = $"{Mathf.RoundToInt(distance)} m";
     }
 
-    private IEnumerator FadeOutAndDestroyAfterDelay(float delay)
+    private  IEnumerator FadeOutAndDestroyAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay - fadeDuration); // Èas, kedy zaène fade-out
 
@@ -85,6 +85,13 @@ public class MissionWaypoint : MonoBehaviour
             yield return null;
         }
 
+        Destroy(currentWaypointInstance);
+        isSpawned = false;
+        this.enabled = false;
+    }
+
+    public void DestroyWaypoint()
+    {
         Destroy(currentWaypointInstance);
         isSpawned = false;
         this.enabled = false;
