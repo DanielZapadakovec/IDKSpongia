@@ -1,91 +1,49 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class ObjectiveManager : MonoBehaviour
 {
-    [SerializeField] private GameObject objectiveParent;
-    [SerializeField] private Text objectiveText;
-    [SerializeField] private Text distanceText;
-
-    [SerializeField] public float updateInterval = 0.5f;
-
-    private List<Objective> objectiveList;
+    public Text objectiveText; // Textové pole UI, kde sa zobrazí aktuálny cie¾
     private int currentObjectiveIndex = 0;
 
-    [Header("Hráè")]
-    [SerializeField] public Transform playerTransform;
-
-    private void Start()
+    [System.Serializable]
+    public class Objective
     {
-        objectiveParent.SetActive(false);
+        public string description; // Popis cie¾a
     }
 
-    public void ObjectiveStart(List<Objective> objectives)
-    {
-        objectiveParent.SetActive(true);
-        objectiveList = objectives;
-        currentObjectiveIndex = 0;
+    public List<Objective> objectives = new List<Objective>(); // Zoznam cie¾ov
 
-        StartCoroutine(UpdateObjective());
-    }
-
-    private IEnumerator UpdateObjective()
+    void Start()
     {
-        while (currentObjectiveIndex < objectiveList.Count)
+        if (objectives.Count > 0)
         {
-            Objective objective = objectiveList[currentObjectiveIndex];
-            objectiveText.text = objective.description;
-            objective.startObjectiveEvent?.Invoke();
+            UpdateObjectiveText();
+        }
+        else
+        {
+            Debug.LogWarning("Objective list is empty!");
+        }
+    }
 
-            if (objective.isDistanceBased)
-            {
-                yield return StartCoroutine(CheckDistanceObjective(objective));
-            }
-            else if (objective.isActionBased)
-            {
-                yield return StartCoroutine(CheckActionObjective(objective));
-            }
-
-            objective.endObjectiveEvent?.Invoke();
+    public void CompleteObjective()
+    {
+        if (currentObjectiveIndex < objectives.Count - 1)
+        {
             currentObjectiveIndex++;
+            UpdateObjectiveText();
         }
-
-        ObjectiveStop();
-    }
-
-    public void SkipObjective(Objective objective)
-    {
-        objective.isCompleted = true;
-    }
-
-    private IEnumerator CheckDistanceObjective(Objective objective)
-    {
-        distanceText.enabled = true;
-        while (!objective.isCompleted && Vector3.Distance(playerTransform.position, objective.location) > objective.completeDistance)
+        else
         {
-            distanceText.text = "Location: " + Vector3.Distance(playerTransform.position, objective.location).ToString("F2") + "m";
-            yield return new WaitForSeconds(updateInterval);
+            objectiveText.text = "All objectives completed!";
+            Debug.Log("All objectives completed!");
         }
-        objective.isCompleted = true;
     }
 
-    private IEnumerator CheckActionObjective(Objective objective)
+    void UpdateObjectiveText()
     {
-        distanceText.enabled = false;
-        objective.completeActionEvent.AddListener(() => objective.isCompleted = true);
-        yield return new WaitUntil(() => objective.isCompleted);
-    }
-
-    private void ObjectiveStop()
-    {
-        StopAllCoroutines();
-        objectiveText.text = "";
-        distanceText.text = "";
-        objectiveParent.SetActive(false);
-
-        Debug.Log("Úlohy dokonèené.");
+        objectiveText.text = "Objective: " + objectives[currentObjectiveIndex].description;
+        Debug.Log("Current objective: " + objectives[currentObjectiveIndex].description);
     }
 }

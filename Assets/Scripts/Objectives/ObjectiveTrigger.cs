@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectiveTrigger : MonoBehaviour
 {
-    [SerializeField] private List<Objective> objectives = new List<Objective>();
+    public ObjectiveManager objectiveManager;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<ObjectiveManager>().ObjectiveStart(objectives);
+            objectiveManager.CompleteObjective();
         }
     }
 }
