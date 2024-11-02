@@ -20,7 +20,7 @@ public class MenuManager : MonoBehaviour
 
     public void NewGame()
     {
-        SceneManager.LoadScene("SpaceStation");
+        SceneManager.LoadScene("StartingScene");
     }
 
     public void Settings()
