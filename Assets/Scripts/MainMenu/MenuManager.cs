@@ -20,7 +20,11 @@ public class MenuManager : MonoBehaviour
 
     public void NewGame()
     {
-        SceneManager.LoadScene("StartingScene");
+        SceneManager.LoadScene("MainShip");
+    }
+    public void MainGameScene()
+    {
+        SceneManager.LoadScene("FirstPlanet");
     }
 
     public void Settings()

@@ -5,12 +5,11 @@ using UnityEngine;
 public class LightController : MonoBehaviour
 {
     [Header("Lights Configuration")]
-    public List<Light> lights; // Zoznam svietidiel, ktorÈ chceme upraviù
-    public Color targetColor = Color.red; // Cieæov· farba svetiel
-    public float targetIntensity = 0.5f; // Cieæov· intenzita svetiel
-    public float transitionDuration = 2f; // Doba prechodu v sekund·ch
+    public List<Light> lights;
+    public Color targetColor = Color.red;
+    public float targetIntensity = 0.5f;
+    public float transitionDuration = 2f;
 
-    // MetÛda na spustenie prechodu intenzity a farby svetiel
     public void AdjustLights()
     {
         StartCoroutine(AdjustLightsCoroutine());
