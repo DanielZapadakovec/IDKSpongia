@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 02c28baf3e8e31c47a2309a76d6a58a8
+guid: 8e4f530598ca45848aa9f10ffbfe6626
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,22 +97,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pixelcut-export_0
+      name: Pi7_BalekARakovinaJedobreDuo_0
       rect:
         serializedVersion: 2
-        x: 290
-        y: 428
-        width: 916
-        height: 845
-      alignment: 5
-      pivot: {x: 1, y: 0.5}
+        x: 326
+        y: 412
+        width: 861
+        height: 859
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d0ba006fcacdf342bd02fe80267711c
-      internalID: 2081583874
+      spriteID: 26ffbedfd4978554a8e64b0c3090ccf5
+      internalID: -1938957874
       vertices: []
       indices: 
       edges: []
@@ -128,7 +128,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      pixelcut-export_0: 2081583874
+      Pi7_BalekARakovinaJedobreDuo_0: -1938957874
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

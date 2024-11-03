@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a309f62e631dca847b5e066dac2188d0
+guid: 3ef82568d851b7e40b0e5849b19aab4d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,22 +97,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RitSamaJadrona_0
+      name: MisovaRit_0
       rect:
         serializedVersion: 2
-        x: 290
-        y: 428
-        width: 916
-        height: 845
+        x: 329
+        y: 402
+        width: 864
+        height: 867
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 456376d36b3c00a4b82e1bf12daf232a
-      internalID: 1968541087
+      spriteID: 2ffba762358b82848a2b919b4d17af3a
+      internalID: -1146645795
       vertices: []
       indices: 
       edges: []
@@ -128,7 +128,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      RitSamaJadrona_0: 1968541087
+      MisovaRit_0: -1146645795
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
