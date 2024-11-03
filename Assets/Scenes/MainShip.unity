@@ -35874,7 +35874,7 @@ MonoBehaviour:
   - description: Go get your morning coffee.
     waypoint: {fileID: 1977622750}
   - description: Go to Escape pod and EVACUATE !!
-    waypoint: {fileID: 1977622750}
+    waypoint: {fileID: 1625412986}
 --- !u!1001 &1671645277
 PrefabInstance:
   m_ObjectHideFlags: 0
