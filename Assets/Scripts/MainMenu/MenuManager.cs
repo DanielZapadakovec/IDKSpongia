@@ -24,7 +24,7 @@ public class MenuManager : MonoBehaviour
     }
     public void MainGameScene()
     {
-        SceneManager.LoadScene("FirstPlanet");
+        SceneManager.LoadScene("SecondVideoScene");
     }
 
     public void Settings()
