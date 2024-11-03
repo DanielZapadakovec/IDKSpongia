@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TerrainScannerDEMO
-{
     public class SensorDetector : MonoBehaviour
     {
         [SerializeField] TerrainScanner.CameraEffect _sensorCameraEffect;
@@ -59,9 +57,10 @@ namespace TerrainScannerDEMO
             _sensorMaterial.SetFloat("_Radius", 0);
             _sensorStart = GetComponent<AudioSource>();
             _sensorCameraEffect.enabled = false;
-        }
+        _maxDistance = 600;
+    }
 
-        private void OnDisable()
+    private void OnDisable()
         {
             _sensorMaterial.SetFloat("_OverlayEmission", _EmissionCacher);
             _sensorMaterial.SetFloat("_Radius", 0);
@@ -126,5 +125,9 @@ namespace TerrainScannerDEMO
             _origin = transform.position;
             _startSensor = true;
         }
+        public void UpgradeScanner()
+        {
+        _maxDistance = 1000;
+        }
     }
-}
+

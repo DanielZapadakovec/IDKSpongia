@@ -16,7 +16,7 @@ public class DoorController : MonoBehaviour
             return;
         }
 
-        anim.SetTrigger("Door");
+        anim.SetBool("Open", true);
     }
 
 }

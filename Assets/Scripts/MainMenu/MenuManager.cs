@@ -26,6 +26,10 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("SecondVideoScene");
     }
+    public void EndVideoScene()
+    {
+        SceneManager.LoadScene("EndScene");
+    }
 
     public void Settings()
     {
