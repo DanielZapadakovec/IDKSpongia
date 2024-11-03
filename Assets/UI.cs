@@ -6,6 +6,7 @@ public class UI : MonoBehaviour
     public GameObject inGameMenuPanel;
     public PlayerController playerController;
     public GameObject TerminalPanel;
+    public GameObject TitulkyPanel;
 
     void Update()
     {
@@ -26,6 +27,10 @@ public class UI : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
         }
+        else if (TitulkyPanel.activeSelf)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -34,7 +39,7 @@ public class UI : MonoBehaviour
         }
     }
 
-   
+
 
     public void BackInGameMenuButton()
     {
