@@ -2813,7 +2813,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 136260224}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88d3bec240988234eb93678167207670, type: 3}
   m_Name: 
@@ -3139,7 +3139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1617857761460912, guid: 4f2ec922dde4f9447863a1de42b853f1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1617857761460912, guid: 4f2ec922dde4f9447863a1de42b853f1, type: 3}
       propertyPath: m_TagString
@@ -7133,7 +7133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5593195909017195379, guid: 4be7a99d429a19840a38df28f88a8680, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -200.92
+      value: -199.94
       objectReference: {fileID: 0}
     - target: {fileID: 5593195909017195379, guid: 4be7a99d429a19840a38df28f88a8680, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7141,7 +7141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5593195909017195379, guid: 4be7a99d429a19840a38df28f88a8680, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -318.03
+      value: -323.79
       objectReference: {fileID: 0}
     - target: {fileID: 5593195909017195379, guid: 4be7a99d429a19840a38df28f88a8680, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10192,6 +10192,18 @@ MonoBehaviour:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1554617034}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1023426220}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -14345,7 +14357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InGameMenuPanel: {fileID: 1237376882}
-  playerController: {fileID: 0}
+  playerController: {fileID: 2146286742}
 --- !u!4 &631077861
 Transform:
   m_ObjectHideFlags: 0
@@ -23092,6 +23104,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 35.525, y: -30, z: 0}
+--- !u!1 &1023426220 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5518968989397478153, guid: 84d0f4d827d6eff479200ba171de5dfd, type: 3}
+  m_PrefabInstance: {fileID: 1569512672495228830}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1023614618 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1734949996605064, guid: 63b60120310584e2f8c071dab4004d99, type: 3}
@@ -27239,7 +27256,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1237376883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34189,7 +34206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sensorCameraEffect: {fileID: 1855234999}
-  _sensorMaterial: {fileID: 2100000, guid: 30a4d20a0a948184f97e51faf54e4b0b, type: 2}
+  _sensorMaterial: {fileID: 2100000, guid: 8e4b1d1a1b7145543a0d991e078f8a2d, type: 2}
   _sensorOrigin: {fileID: 1554617034}
   _maxDistance: 480
   _speed: 30
@@ -39830,7 +39847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6b9848ca9289c4288b3ebf74fc7d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 30a4d20a0a948184f97e51faf54e4b0b, type: 2}
+  material: {fileID: 2100000, guid: 8e4b1d1a1b7145543a0d991e078f8a2d, type: 2}
   additionalMaterials: []
 --- !u!114 &1855235000
 MonoBehaviour:
@@ -47301,7 +47318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100014, guid: 02dd6406ed1ebc248b2fafd0485e0de9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100014, guid: 02dd6406ed1ebc248b2fafd0485e0de9, type: 3}
       propertyPath: m_TagString
@@ -47547,6 +47564,10 @@ PrefabInstance:
     - target: {fileID: 5518968989397478153, guid: 84d0f4d827d6eff479200ba171de5dfd, type: 3}
       propertyPath: m_Name
       value: Objectives
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518968989397478153, guid: 84d0f4d827d6eff479200ba171de5dfd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5640957263143320398, guid: 84d0f4d827d6eff479200ba171de5dfd, type: 3}
       propertyPath: m_Pivot.x
