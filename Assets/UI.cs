@@ -23,9 +23,16 @@ public class UI : MonoBehaviour
 
             Time.timeScale = 0;
         }
-        else if (TerminalPanel.activeSelf)
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Time.timeScale = 1;
+            playerController.enabled = true;
+        }
+        if (TerminalPanel.activeSelf)
         {
             Cursor.lockState = CursorLockMode.None;
+
         }
         else if (TitulkyPanel.activeSelf)
         {
