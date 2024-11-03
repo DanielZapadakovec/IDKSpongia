@@ -32,7 +32,12 @@ public class Terminal : MonoBehaviour
         inputField.onEndEdit.AddListener(ProcessCommand);
         StartCoroutine(BootSequence());
     }
+    public void ActivateInput()
 
+    {
+        inputField.Select();  // Automaticky vyberie InputField, keï sa spustí terminál
+        inputField.ActivateInputField();  // Aktivuje InputField
+    }
     IEnumerator BootSequence()
     {
         outputText.text = "";
