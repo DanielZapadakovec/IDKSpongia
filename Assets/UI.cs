@@ -38,4 +38,8 @@ public class UI : MonoBehaviour
     {
         InGameMenuPanel.SetActive(false);
     }
+    public void BackToMenuIngameButton()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }
