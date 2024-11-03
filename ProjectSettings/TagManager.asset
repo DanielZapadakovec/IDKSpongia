@@ -11,6 +11,7 @@ TagManager:
   - Ground
   - Energy
   - Interactable
+  - Fuel
   layers:
   - Default
   - TransparentFX
