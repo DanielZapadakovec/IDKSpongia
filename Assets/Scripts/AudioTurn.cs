@@ -6,6 +6,7 @@ public class AudioTurn : MonoBehaviour
     public GameObject audioParticle;
     public ObjectiveManager objectiveManager;
      bool hasCompletedObjective;
+    public bool isTV;
 
     void Start()
     {
@@ -14,7 +15,7 @@ public class AudioTurn : MonoBehaviour
 
     public void ToggleRadio()
     {
-        if (!hasCompletedObjective) 
+        if (!hasCompletedObjective && !isTV)
         {
             objectiveManager.CompleteObjective(); 
             hasCompletedObjective = true;   
