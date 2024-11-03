@@ -7,15 +7,15 @@ public class LightController : MonoBehaviour
     [Header("Lights Configuration")]
     public List<Light> lights;
     public Color targetColor = Color.red;
-    public float targetIntensity = 0.5f;
+
     public float transitionDuration = 2f;
 
-    public void AdjustLights()
+    public void AdjustLights(float intensity)
     {
-        StartCoroutine(AdjustLightsCoroutine());
+        StartCoroutine(AdjustLightsCoroutine(intensity));
     }
 
-    private IEnumerator AdjustLightsCoroutine()
+    private IEnumerator AdjustLightsCoroutine(float intensity)
     {
         float elapsedTime = 0f;
 
@@ -36,7 +36,7 @@ public class LightController : MonoBehaviour
             {
                 // Lerp (lineárne prechod) medzi pôvodnou a cie¾ovou farbou a intenzitou
                 lights[i].color = Color.Lerp(initialColors[i], targetColor, t);
-                lights[i].intensity = Mathf.Lerp(initialIntensities[i], targetIntensity, t);
+                lights[i].intensity = Mathf.Lerp(initialIntensities[i], intensity, t);
             }
 
             elapsedTime += Time.deltaTime;
@@ -47,7 +47,7 @@ public class LightController : MonoBehaviour
         for (int i = 0; i < lights.Count; i++)
         {
             lights[i].color = targetColor;
-            lights[i].intensity = targetIntensity;
+            lights[i].intensity = intensity;
         }
     }
 }

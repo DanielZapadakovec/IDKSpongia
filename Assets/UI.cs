@@ -1,45 +1,68 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.ProBuilder.Shapes;
 using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour
 {
-    public GameObject InGameMenuPanel;
+    public GameObject inGameMenuPanel;
     public PlayerController playerController;
-    void Start()
-    {
-        
-    }
+    public bool terminalInGame;
+    private bool paused;
 
- 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            InGameMenuPanel.SetActive(true);
+            TogglePause();
         }
+    }
 
-        if (InGameMenuPanel.activeSelf)
+    public void TogglePause()
+    {
+        paused = !paused;
+
+        if (paused)
         {
-            Cursor.lockState = CursorLockMode.None;
+            inGameMenuPanel.SetActive(true);
             Time.timeScale = 0;
-            playerController.enabled = false;
+
+            if (!terminalInGame)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                playerController.enabled = false;
+            }
         }
         else
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            inGameMenuPanel.SetActive(false);
             Time.timeScale = 1;
+
+            if (!terminalInGame)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                playerController.enabled = true;
+            }
+        }
+    }
+
+    public void BackInGameMenuButton()
+    {
+        inGameMenuPanel.SetActive(false);
+        paused = false;
+        Time.timeScale = 1;
+
+        if (!terminalInGame)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             playerController.enabled = true;
         }
     }
-    public void BackInGameMenuButton()
-    {
-        InGameMenuPanel.SetActive(false);
-    }
+
     public void BackToMenuIngameButton()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 }
