@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class UI : MonoBehaviour
 {
     public GameObject InGameMenuPanel;
+    public PlayerController playerController;
     void Start()
     {
         
@@ -23,10 +24,14 @@ public class UI : MonoBehaviour
         if (InGameMenuPanel.activeSelf)
         {
             Cursor.lockState = CursorLockMode.None;
+            Time.timeScale = 0;
+            playerController.enabled = false;
         }
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
+            Time.timeScale = 1;
+            playerController.enabled = true;
         }
     }
     public void BackInGameMenuButton()
