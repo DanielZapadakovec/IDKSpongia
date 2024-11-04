@@ -62,7 +62,6 @@ public class PlayerInteractionPlanet : MonoBehaviour
 
             // Zobrazíme interakèné UI nad objektom
             interactionUI.SetActive(true);
-            interactionUI.transform.position = currentInteractable.transform.position + Vector3.up * 1.5f;
         }
     }
 

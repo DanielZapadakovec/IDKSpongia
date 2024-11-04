@@ -8,7 +8,7 @@ public class PickupObject : MonoBehaviour
     public KeyCode dropKey = KeyCode.E; // Tlaèidlo na pustenie objektu
     private Transform originalParent; // Pôvodný rodiè objektu
     private bool isBeingHeld = false; // Kontrola, èi je objekt zdvihnutý
-
+    public GameObject fKey;
     private Rigidbody rb;
 
     void Start()
@@ -28,6 +28,7 @@ public class PickupObject : MonoBehaviour
         // Deaktivuj fyziku poèas držania objektu
         rb.isKinematic = true;
         isBeingHeld = true;
+        fKey.SetActive(true);
     }
 
     void Update()
@@ -55,6 +56,7 @@ public class PickupObject : MonoBehaviour
 
     void Drop()
     {
+        fKey.SetActive(false);
         // Odstráò objekt z pozície rúk hráèa
         transform.SetParent(originalParent);
         rb.isKinematic = false;
