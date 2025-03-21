@@ -11,9 +11,8 @@ public class PlayerInteraction : MonoBehaviour
     void Update()
     {
         CheckInteraction();
-        if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null)
+        if (Input.GetMouseButtonDown(0) && currentInteractable != null)
         {
-            Debug.Log("Interacting with: " + currentInteractable.name);
             currentInteractable.Interact();
         }
     }

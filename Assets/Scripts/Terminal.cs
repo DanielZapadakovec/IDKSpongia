@@ -151,6 +151,7 @@ public class Terminal : MonoBehaviour
         if(!hasCompletedObjective)
         {
             objectiveManager.CompleteObjective();
+            playerController.enabled = true;
             hasCompletedObjective = true;
         }
         outputText.text = "";
@@ -158,9 +159,7 @@ public class Terminal : MonoBehaviour
         {
             eventhap.Invoke();
             generatorChecked = false;
-            playerController.enabled = true;
             terminalActive = false;
-            this.enabled = false;
         }
         else
         {
