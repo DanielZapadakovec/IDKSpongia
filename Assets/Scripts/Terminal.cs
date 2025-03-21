@@ -9,34 +9,48 @@ public class Terminal : MonoBehaviour
     public Text outputText;
     public UnityEvent eventhap;
     public bool generatorChecked;
+    public PlayerController playerController;
+    public Camera mainCam;
 
     public AudioClip typingSound;       // Zvuk pÌsania na kl·vesnici
     public float typingSpeed = 0.05f;   // R˝chlosù pÌsania po pÌsmenk·ch
 
-    private AudioSource audioSource;    // Zdroj zvuku
+    public AudioSource audioSource;    // Zdroj zvuku
     private bool isTyping;              // Kontrola, Ëi sa aktu·lne nieËo vypisuje
     public ObjectiveManager objectiveManager;
     bool hasCompletedObjective;
+    bool terminalActive;
 
     private void Start()
     {
-        audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = typingSound;
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return) && terminalActive && inputField.text =="")
+        {
+            ActivateInput(); 
+        }
+        else if (Input.GetKeyDown(KeyCode.Return) && terminalActive && inputField.text !="")
+        {
+            ProcessCommand(inputField.text);
+        }
     }
 
     public void StartTerminal()
     {
+        terminalActive = true;
+        playerController.enabled = false;
+        mainCam.transform.LookAt(this.transform);
         generatorChecked = false;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        inputField.onEndEdit.AddListener(ProcessCommand);
         StartCoroutine(BootSequence());
+        
     }
     public void ActivateInput()
 
     {
-        inputField.Select();  // Automaticky vyberie InputField, keÔ sa spustÌ termin·l
-        inputField.ActivateInputField();  // Aktivuje InputField
+        inputField.Select();
+        inputField.ActivateInputField();
     }
     IEnumerator BootSequence()
     {
@@ -56,7 +70,7 @@ public class Terminal : MonoBehaviour
             outputText.text += letter;
             if (audioSource && typingSound)
             {
-                audioSource.PlayOneShot(typingSound, 0.5f);  // Zvuk pre kaûdÈ pÌsmenko
+                audioSource.PlayOneShot(typingSound, 0.5f);
             }
             yield return new WaitForSeconds(typingSpeed);
         }
@@ -142,10 +156,11 @@ public class Terminal : MonoBehaviour
         outputText.text = "";
         if (generatorChecked)
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
             eventhap.Invoke();
             generatorChecked = false;
+            playerController.enabled = true;
+            terminalActive = false;
+            this.enabled = false;
         }
         else
         {
