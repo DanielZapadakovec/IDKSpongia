@@ -20,6 +20,9 @@ public class Terminal : MonoBehaviour
     public ObjectiveManager objectiveManager;
     bool hasCompletedObjective;
     bool terminalActive;
+    [HideInInspector]public bool isTerminal;
+    private bool doorJammed;
+    public GameObject HangarDoor;
 
     private void Start()
     {
@@ -39,6 +42,7 @@ public class Terminal : MonoBehaviour
 
     public void StartTerminal()
     {
+        isTerminal = true;
         terminalActive = true;
         playerController.enabled = false;
         mainCam.transform.LookAt(this.transform);
@@ -102,6 +106,10 @@ public class Terminal : MonoBehaviour
                 ShowSpongia();
                 break;
 
+            case "/opendoors":
+                OpenDoor();
+                break;
+
             default:
                 ShowError();
                 break;
@@ -113,7 +121,7 @@ public class Terminal : MonoBehaviour
     void ShowHelp()
     {
         outputText.text = "";
-        StartCoroutine(TypeText("Available commands:\n/help - Show available commands\n/checkgenerator - Check the generator status\n/spongia - Display special message\n/end - Close terminal\n"));
+        StartCoroutine(TypeText("Available commands:\n/help - Show available commands\n/checkgenerator - Check the generator status\n/spongia - Display special message\n/end - Close terminal\n\n/opendoors - Open doors if jammed"));
     }
 
     void CheckGenerator()
@@ -146,6 +154,24 @@ public class Terminal : MonoBehaviour
         StartCoroutine(TypeText("Error: Command not recognized. Please enter a valid command.\n"));
     }
 
+    void OpenDoor()
+    {
+        if(doorJammed)
+        {
+            outputText.text = "";
+            StartCoroutine(TypeText("Doors opening.\n"));
+            HangarDoor.SetActive(false);
+            eventhap.Invoke();
+            isTerminal = false;
+            objectiveManager.CompleteObjective();
+        }
+        else
+        {
+            outputText.text = "";
+            StartCoroutine(TypeText("Error: Doors are not jammed.\n"));
+        }
+    }
+
     void End()
     {
         if(!hasCompletedObjective)
@@ -153,6 +179,7 @@ public class Terminal : MonoBehaviour
             objectiveManager.CompleteObjective();
             playerController.enabled = true;
             hasCompletedObjective = true;
+            isTerminal = false;
         }
         outputText.text = "";
         if (generatorChecked)
@@ -166,5 +193,10 @@ public class Terminal : MonoBehaviour
             StartCoroutine(TypeText("Error: Check generator, then end terminal.\n"));
         }
         
+    }
+
+    public void DoorJammed()
+    {
+        doorJammed = true;
     }
 }

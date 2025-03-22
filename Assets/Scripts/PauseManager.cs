@@ -12,6 +12,7 @@ public class PauseManager : MonoBehaviour
     private bool isSettings;
     private bool isControls;
     public PlayerController playerController;
+    public Terminal terminal;
 
     void Update()
     {
@@ -33,7 +34,7 @@ public class PauseManager : MonoBehaviour
     {
         if (!isPaused)
         {
-            if (playerController != null)
+            if (playerController != null && terminal != null && !terminal.isTerminal)
             {
                 playerController.enabled = false;
             }
@@ -47,7 +48,7 @@ public class PauseManager : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            if (playerController != null)
+            if (playerController != null && !terminal.isTerminal)
             {
                 playerController.enabled = true;
             }

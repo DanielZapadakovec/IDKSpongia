@@ -38,25 +38,22 @@ public class PlayerController : MonoBehaviour
         #region Handles Movment
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
-
-        // Press Left Shift to run
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
         float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Vertical") : 0;
         float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Horizontal") : 0;
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
-        // Kontrola, èi je hráè v pohybe a na zemi
         if (characterController.isGrounded && moveDirection.magnitude > 0)
         {
-            if (!audioSource.isPlaying) // Ak zvuk nehrá, prehráme ho
+            if (!audioSource.isPlaying)
             {
                 audioSource.Play();
             }
         }
         else
         {
-            audioSource.Pause(); // Ak hráè nechodí alebo skáèe, pozastavíme zvuk
+            audioSource.Pause();
         }
         #endregion
 

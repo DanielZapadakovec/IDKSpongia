@@ -7,6 +7,7 @@ namespace AstronautPlayer
         private Animator anim;
         public float moveSpeed = 15;
         public float jumpForce = 10f; // Sila skoku
+        public float runningSpeed = 25f;
         public float turnSpeed = 400.0f;
         public float gravity = 20.0f;
         public float gravityPauseDuration = 0.5f; // Dåžka pauzy gravitácie po skoku
@@ -38,6 +39,14 @@ namespace AstronautPlayer
             {
                 Jump();
             }
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                moveSpeed = runningSpeed;
+            }
+            else
+            {
+                moveSpeed = 5;
+            }
 
             // Pohyb do strán
             moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
@@ -49,24 +58,20 @@ namespace AstronautPlayer
 
         private void FixedUpdate()
         {
-            // Pohyb hráèa
             rigidbody.MovePosition(rigidbody.position + transform.TransformDirection(moveDir) * moveSpeed * Time.deltaTime);
         }
 
         private void Jump()
         {
-            // Aplikovanie vertikálnej sily pre skok
             rigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-            isGrounded = false; // Nastavíme, že hráè je vo vzduchu
+            isGrounded = false;
             anim.SetBool("isGrounded", false);
 
-            // Pozastavenie gravitácie pri skoku
             gravityBody.DisableGravity(gravityPauseDuration);
         }
 
         private void OnCollisionEnter(Collision collision)
         {
-            // Ak hráè koliduje so zemou, nastavíme, že je na zemi
             if (collision.gameObject.CompareTag("Ground"))
             {
                 anim.SetBool("isGrounded", true);
