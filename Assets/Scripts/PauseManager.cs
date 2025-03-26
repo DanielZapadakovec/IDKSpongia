@@ -14,6 +14,12 @@ public class PauseManager : MonoBehaviour
     public PlayerController playerController;
     public Terminal terminal;
 
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !isSettings && !isControls)

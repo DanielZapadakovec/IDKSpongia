@@ -9,6 +9,7 @@ public class ObjectiveManager : MonoBehaviour
     private int currentObjectiveIndex = 0;
 
     public bool waypointNeeded;
+    private bool onetimeObjectiveCompleted;
 
     [System.Serializable]
     public class Objective
@@ -44,11 +45,6 @@ public class ObjectiveManager : MonoBehaviour
             currentObjectiveIndex++;
             UpdateObjectiveText();
         }
-        else
-        {
-            objectiveText.text = "All objectives completed!";
-            Debug.Log("All objectives completed!");
-        }
     }
 
     void UpdateObjectiveText()
@@ -56,4 +52,22 @@ public class ObjectiveManager : MonoBehaviour
         objectiveText.text = "Objective: " + objectives[currentObjectiveIndex].description;
         Debug.Log("Current objective: " + objectives[currentObjectiveIndex].description);
     }
+
+    public void CompleteObjectiveOnce()
+    {
+        if (!onetimeObjectiveCompleted)
+        {
+            if (waypointNeeded)
+            {
+                objectives[currentObjectiveIndex + 1].waypoint.enabled = true;
+                objectives[currentObjectiveIndex].waypoint.DestroyWaypoint();
+
+            }
+            currentObjectiveIndex++;
+            UpdateObjectiveText();
+            onetimeObjectiveCompleted = true;
+        }
+
+    }
+
 }

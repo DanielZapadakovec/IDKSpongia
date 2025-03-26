@@ -36,12 +36,9 @@ public class PickupObject : MonoBehaviour
         if (isBeingHeld && Input.GetKeyDown(dropKey))
         {
             Drop();
+            fKey.SetActive(false);
         }
-    }
-
-    void LateUpdate()
-    {
-        if (isBeingHeld)
+        else if (isBeingHeld)
         {
             UpdateHeldObjectPosition();
         }
@@ -56,7 +53,6 @@ public class PickupObject : MonoBehaviour
 
     void Drop()
     {
-        fKey.SetActive(false);
         // Odstráò objekt z pozície rúk hráèa
         transform.SetParent(originalParent);
         rb.isKinematic = false;

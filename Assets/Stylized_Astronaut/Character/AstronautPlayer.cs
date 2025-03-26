@@ -7,9 +7,10 @@ namespace AstronautPlayer
         private Animator anim;
         public float moveSpeed = 15;
         public float jumpForce = 10f; // Sila skoku
-        public float runningSpeed = 25f;
+        public float runningSpeed = 15f;
         public float turnSpeed = 400.0f;
         public float gravity = 20.0f;
+        public bool canSprint;
         public float gravityPauseDuration = 0.5f; // Dåžka pauzy gravitácie po skoku
 
         private Vector3 moveDir;
@@ -39,13 +40,16 @@ namespace AstronautPlayer
             {
                 Jump();
             }
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (canSprint)
             {
-                moveSpeed = runningSpeed;
-            }
-            else
-            {
-                moveSpeed = 5;
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    moveSpeed = runningSpeed;
+                }
+                else
+                {
+                    moveSpeed = 5;
+                }
             }
 
             // Pohyb do strán
@@ -77,6 +81,11 @@ namespace AstronautPlayer
                 anim.SetBool("isGrounded", true);
                 isGrounded = true;
             }
+        }
+
+        public void EnableSprint()
+        {
+            canSprint = true;
         }
     }
 }
